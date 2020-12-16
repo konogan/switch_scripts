@@ -1,7 +1,6 @@
 import * as fs from "fs-extra";
 import * as path from "path";
 
-
 async function getFiles(dir, levels, currentLevel, files) {
   const items = await fs.readdir(dir);
   for (const item of items) {
