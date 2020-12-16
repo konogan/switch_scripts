@@ -1,8 +1,8 @@
 {
-  "name": "switch-test",
+  "name": "preflight_transformer",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "preflight_transformer",
+  "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
