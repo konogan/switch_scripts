@@ -1,7 +1,9 @@
 const fs = require("fs-extra");
+const tmp = require('tmp');
 const path = require('path');
 const xml2js = require('xml2js');
 const PDFDocument = require('pdfkit');
+const getStream = require('get-stream');
 const parser = new xml2js.Parser();
 
 
@@ -14,13 +16,15 @@ async function jobArrived(s, flowElement, job) {
     await job.log(LogLevel.Warning, "The preflight_report '%1' is arrived", [preflight_report]);
     await job.log(LogLevel.Warning, "The preflight_preview '%1' is arrived", [preflight_preview]);
 
-    const outPath = await job.get(AccessLevel.ReadWrite);
-    let preflight_final = path.join(outPath, job.getName() + '.pdf');
-    await job.log(LogLevel.Warning, "outputFile '%1' is available", [preflight_final]);
+    const preflight_report_out = tmp.fileSync();
+    await job.log(LogLevel.Warning, "outputFile '%1' is available", [preflight_report_out.name]);
 
-    await generate_report(preflight_report, preflight_preview, preflight_final);
-    
-    await job.sendToSingle()
+    await generate_report(preflight_report, preflight_preview, preflight_report_out.name, job);
+
+    const newJob = await job.createChild(preflight_report_out.name);
+    await newJob.sendToSingle(job.getName() + '.pdf')
+
+    await job.sendToNull();
 
   } catch (e) {
     job.fail("Failed to process the job '%1': %2", [job.getName(), e.message]);
@@ -131,7 +135,7 @@ function display_informations(doc, infos, coord_y) {
 }
 
 
-async function generate_report(preflight, vignette, report) {
+async function generate_report(preflight, vignette, report, job) {
   let xml = await fs.readFile(preflight);
 
   let jsonreport = await xml2js.parseStringPromise(xml, { trim: true, normalize: true, explicitArray: false, ignoreAttrs: false, mergeAttrs: true })
@@ -143,8 +147,11 @@ async function generate_report(preflight, vignette, report) {
     });
 
   // report
-  const doc = new PDFDocument({ size: 'A4', margin: m2p(10) });
-  doc.pipe(fs.createWriteStream(report));
+
+  const doc = new PDFDocument({ size: 'A4', margin: m2p(10) })
+
+  await job.log(LogLevel.Warning, "j’ai fini !");
+
 
   const today = new Date();
   const date = `${today.getDate()}/${today.getMonth() + 1}/${today.getFullYear()} ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`
@@ -300,7 +307,10 @@ async function generate_report(preflight, vignette, report) {
   });
 
   page_footer(doc, 2)
-  doc.end();
+  doc.end()
+
+  let content = await getStream.buffer(doc)
+  await fs.writeFile(report, content);
 }
 
 

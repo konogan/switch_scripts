@@ -10,7 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "fs-extra": "^9.0.1",
+    "get-stream": "^6.0.0",
     "pdfkit": "^0.11.0",
+    "tmp": "^0.2.1",
     "xml2js": "^0.4.23"
   }
 }
