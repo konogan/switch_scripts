@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreflightReport author="CMI Publishing" unit="mm" datetime="2020-10-06T06:29:11+02:00">
+   <PreflightProfile>GENERIC_MAG sans variables</PreflightProfile>
+   <Title>GR_Elle212x275.indd</Title>
+   <DocumentName>_00GHI_ELLE_ELLG_3910_P042.pdf</DocumentName>
+   <PDFVersion major="1" minor="3">1.3</PDFVersion>
+   <Creator>Adobe InDesign 15.0 (Windows)</Creator>
+   <OutputIntent type="GTS_PDFX">
+      <Var name="Output condition">ISO 12647-2:2004 / Amd 1, Offset commercial and specialty printing according to ISO 12647-2, paper type 1 or 2 (gloss or matte coated offset, 115 g/m2), screen frequency 60/cm</Var>
+      <Var name="Output condition identifier">FOGRA39</Var>
+      <Var name="Registry name">http://www.color.org</Var>
+      <Var name="Additional information">ISO Coated v2 300% (ECI)</Var>
+      <Var name="Destination output profile">ISO Coated v2 300% (ECI)</Var>
+   </OutputIntent>
+   <Warnings>
+      <Message>Couleur RVB est utilisé(e) (402x à la page 1)</Message>
+      <Locations>
+         <Location page="1" minX="4.925" minY="254.46" maxX="42.024" maxY="290.076"/>
+         <Location page="1" minX="41.948" minY="266.319" maxX="91.363" maxY="290.076"/>
+         <Location page="1" minX="91.287" minY="278.141" maxX="214.709" maxY="290.077"/>
+         <Location page="1" minX="214.633" minY="254.46" maxX="227.063" maxY="290.076"/>
+         <Location page="1" minX="147.391" minY="266.319" maxX="214.709" maxY="278.217"/>
+         <Location page="1" minX="41.948" minY="254.46" maxX="65.511" maxY="266.395"/>
+         <Location page="1" minX="165.156" minY="254.46" maxX="214.709" maxY="266.395"/>
+         <Location page="1" minX="62.778" minY="254.46" maxX="109.57" maxY="283.256"/>
+         <Location page="1" minX="109.494" minY="254.46" maxX="156.286" maxY="283.425"/>
+         <Location page="1" minX="156.21" minY="254.46" maxX="167.871" maxY="274.22"/>
+         <Location page="1" minX="4.963" minY="254.498" maxX="26.326" maxY="264.039"/>
+         <Location page="1" minX="4.969" minY="50.138" maxX="227.038" maxY="56.413"/>
+         <Location page="1" minX="26.226" minY="246.862" maxX="69.213" maxY="254.616"/>
+         <Location page="1" minX="152.977" minY="217.343" maxX="190.064" maxY="254.616"/>
+         <Location page="1" minX="189.989" minY="217.343" maxX="227.075" maxY="254.616"/>
+         <Location page="1" minX="103.549" minY="229.743" maxX="153.052" maxY="241.543"/>
+         <Location page="1" minX="107.364" minY="204.944" maxX="153.052" maxY="229.817"/>
+         <Location page="1" minX="152.977" minY="180.145" maxX="190.064" maxY="217.418"/>
+         <Location page="1" minX="189.989" minY="180.145" maxX="227.075" maxY="217.418"/>
+         <Location page="1" minX="119.767" minY="192.545" maxX="153.052" maxY="205.019"/>
+         <Location page="1" minX="136.404" minY="184.865" maxX="153.052" maxY="192.619"/>
+         <Location page="1" minX="162.959" minY="169.516" maxX="227.075" maxY="180.22"/>
+         <Location page="1" minX="4.932" minY="118.186" maxX="42.018" maxY="154.659"/>
+         <Location page="1" minX="41.943" minY="56.189" maxX="54.342" maxY="147.3"/>
+         <Location page="1" minX="54.268" minY="56.273" maxX="66.705" maxY="127.021"/>
+         <Location page="1" minX="4.932" minY="80.987" maxX="42.018" maxY="118.26"/>
+         <Location page="1" minX="66.63" minY="80.987" maxX="103.716" maxY="116.654"/>
+         <Location page="1" minX="103.641" minY="56.273" maxX="116.041" maxY="108.112"/>
+         <Location page="1" minX="115.966" minY="56.273" maxX="140.727" maxY="103.153"/>
+         <Location page="1" minX="140.653" minY="56.273" maxX="177.739" maxY="93.377"/>
+         <Location page="1" minX="177.664" minY="56.273" maxX="214.75" maxY="86.531"/>
+         <Location page="1" minX="4.932" minY="56.189" maxX="42.018" maxY="81.062"/>
+         <Location page="1" minX="66.63" minY="56.273" maxX="103.716" maxY="81.062"/>
+         <Location page="1" minX="214.676" minY="56.273" maxX="227.075" maxY="80.977"/>
+         <Location page="1" minX="63.53" minY="244.234" maxX="167.207" maxY="254.616"/>
+         <Location page="1" minX="82.566" minY="233.888" maxX="158.15" maxY="244.308"/>
+         <Location page="1" minX="136.86" minY="164.011" maxX="176.357" maxY="188.25"/>
+         <Location page="1" minX="176.282" minY="139.81" maxX="214.377" maxY="176.149"/>
+         <Location page="1" minX="214.302" minY="79.381" maxX="227.075" maxY="172.17"/>
+         <Location page="1" minX="163.584" minY="86.659" maxX="176.357" maxY="164.086"/>
+         <Location page="1" minX="176.282" minY="103.545" maxX="214.377" maxY="139.885"/>
+         <Location page="1" minX="100.253" minY="103.545" maxX="163.659" maxY="111.916"/>
+         <Location page="1" minX="114.729" minY="91.482" maxX="163.659" maxY="103.62"/>
+         <Location page="1" minX="176.282" minY="80.986" maxX="214.377" maxY="103.62"/>
+         <Location page="1" minX="147.013" minY="88.767" maxX="163.659" maxY="91.557"/>
+         <Location page="1" minX="4.932" minY="218.128" maxX="41.009" maxY="254.616"/>
+         <Location page="1" minX="40.935" minY="218.128" maxX="77.012" maxY="250.045"/>
+         <Location page="1" minX="76.938" minY="205.99" maxX="112.978" maxY="241.886"/>
+         <Location page="1" minX="112.903" minY="188.226" maxX="125.004" maxY="222.983"/>
+         <Location page="1" minX="4.932" minY="181.714" maxX="41.009" maxY="218.202"/>
+         <Location page="1" minX="40.935" minY="181.714" maxX="77.012" maxY="218.202"/>
+         <Location page="1" minX="76.938" minY="181.714" maxX="112.978" maxY="206.064"/>
+         <Location page="1" minX="124.929" minY="188.14" maxX="136.993" maxY="199.892"/>
+         <Location page="1" minX="4.932" minY="147.416" maxX="41.009" maxY="181.789"/>
+         <Location page="1" minX="40.935" minY="169.576" maxX="95.576" maxY="181.788"/>
+         <Location page="1" minX="40.935" minY="145.3" maxX="52.154" maxY="169.651"/>
+         <Location page="1" minX="69.169" minY="234.561" maxX="103.641" maxY="246.923"/>
+         <Location page="1" minX="92.437" minY="172.75" maxX="138.636" maxY="189.146"/>
+         <Location page="1" minX="52.07" minY="110.375" maxX="88.297" maxY="145.439"/>
+         <Location page="1" minX="88.185" minY="109.361" maxX="100.323" maxY="133.948"/>
+         <Location page="1" minX="86.972" minY="107.343" maxX="124.412" maxY="139.351"/>
+         <Location page="1" minX="124.3" minY="105.738" maxX="161.872" maxY="139.351"/>
+         <Location page="1" minX="161.759" minY="110.731" maxX="174.383" maxY="168.451"/>
+         <Location page="1" minX="86.803" minY="139.239" maxX="92.105" maxY="139.996"/>
+         <Location page="1" minX="138.548" minY="139.239" maxX="161.871" maxY="172.852"/>
+         <Location page="1" minX="52.07" minY="139.911" maxX="92.517" maxY="175.914"/>
+         <Location page="1" minX="83.666" minY="133.029" maxX="117.951" maxY="163.067"/>
+         <Location page="1" minX="117.839" minY="127.698" maxX="140.733" maxY="173.731"/>
+         <Location page="1" minX="87.306" minY="162.955" maxX="117.951" maxY="174.831"/>
+         <Location page="1" minX="55.192" minY="61.419" maxX="88.051" maxY="64.314"/>
+         <Location page="1" minX="128.199" minY="73.729" maxX="192.925" maxY="80.745"/>
+         <Location page="1" minX="106.587" minY="80.52" maxX="192.66" maxY="89.277"/>
+         <Location page="1" minX="143.659" minY="88.179" maxX="192.695" maxY="94.22"/>
+         <Location page="1" minX="129.045" minY="95.362" maxX="192.883" maxY="102.324"/>
+         <Location page="1" minX="206.94" minY="69.261" maxX="208.556" maxY="118.095"/>
+         <Location page="1" minX="92.053" minY="187.923" maxX="154.963" maxY="207.388"/>
+         <Location page="1" minX="91.694" minY="211.213" maxX="140.881" maxY="218.079"/>
+         <Location page="1" minX="89.385" minY="263.062" maxX="94.543" maxY="273.082"/>
+         <Location page="1" minX="102.453" minY="262.762" maxX="108.773" maxY="273.258"/>
+         <Location page="1" minX="108.936" minY="263.058" maxX="115.225" maxY="273.083"/>
+         <Location page="1" minX="132.591" minY="263.059" maxX="138.881" maxY="273.083"/>
+         <Location page="1" minX="114.786" minY="262.763" maxX="120.617" maxY="273.082"/>
+         <Location page="1" minX="120.825" minY="263.062" maxX="126.547" maxY="273.082"/>
+         <Location page="1" minX="126.897" minY="263.061" maxX="132.057" maxY="273.082"/>
+         <Location page="1" minX="127.819" minY="273.31" maxX="129.534" maxY="275.546"/>
+         <Location page="1" minX="139.073" minY="263.061" maxX="144.232" maxY="273.08"/>
+         <Location page="1" minX="94.587" minY="263.062" maxX="99.746" maxY="273.081"/>
+         <Location page="1" minX="89.315" minY="256.388" maxX="143.714" maxY="261.318"/>
+         <Location page="1" minX="145.794" minY="271.235" maxX="147.127" maxY="273.058"/>
+         <Location page="1" minX="144.916" minY="270.677" maxX="147.848" maxY="273.609"/>
+         <Location page="1" minX="91.898" minY="257.219" maxX="94.542" maxY="260.508"/>
+         <Location page="1" minX="96.363" minY="257.292" maxX="100.372" maxY="260.434"/>
+         <Location page="1" minX="102.381" minY="257.292" maxX="103.285" maxY="260.433"/>
+         <Location page="1" minX="105.417" minY="257.292" maxX="107.961" maxY="260.433"/>
+         <Location page="1" minX="109.963" minY="257.291" maxX="112.581" maxY="260.433"/>
+         <Location page="1" minX="114.716" minY="257.292" maxX="117.185" maxY="260.434"/>
+         <Location page="1" minX="119.408" minY="257.291" maxX="122.172" maxY="260.434"/>
+         <Location page="1" minX="124.253" minY="257.292" maxX="126.451" maxY="260.433"/>
+         <Location page="1" minX="128.376" minY="257.291" maxX="131.402" maxY="260.434"/>
+         <Location page="1" minX="133.412" minY="257.291" maxX="136.052" maxY="260.433"/>
+      </Locations>
+   </Warnings>
+   <Warnings>
+      <Message>La résolution d'image est 72 x 72 ppi - image couleur ou en gamme de gris est inférieur(e) à 300 ppi (2x à la page 1)</Message>
+      <Locations>
+         <Location page="1" minX="152.977" minY="180.145" maxX="190.064" maxY="217.418"/>
+         <Location page="1" minX="176.282" minY="139.81" maxX="214.377" maxY="176.149"/>
+      </Locations>
+   </Warnings>
+   <PageBoxes>
+      <Trimbox width="212" height="275" minX="10" minY="10" maxX="222" maxY="285"/>
+      <Bleedbox width="232" height="295" minX="0" minY="0" maxX="232" maxY="295"/>
+      <Mediabox width="232" height="295" minX="0" minY="0" maxX="232" maxY="295"/>
+   </PageBoxes>
+   <Inks>
+      <Ink>Cyan</Ink>
+      <Ink>Magenta</Ink>
+      <Ink>Yellow</Ink>
+      <Ink>Black</Ink>
+   </Inks>
+</PreflightReport>
