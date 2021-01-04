@@ -2,7 +2,7 @@
 <Object>
     <ElementFields>
         <Name Editor="hide" Type="string">preflight_transformer</Name>
-        <DisplayName Editor="hide" Type="string"/>
+        <DisplayName Editor="hide" Type="string">preflight_transformer</DisplayName>
         <Version Editor="hide" Type="number">1</Version>
         <Keywords Editor="hide" Type="string"/>
         <Tooltip Editor="hide" Type="string"/>

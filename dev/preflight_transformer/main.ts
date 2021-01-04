@@ -45,18 +45,18 @@ function m2p(mm : number):number {
     return mm * 2.834666
 }
 
-function draw_line(doc: PDFDocument, coord_x: number, coord_y: number, width: number) {
+function draw_line(doc: PDFKit.PDFDocument, coord_x: number, coord_y: number, width: number) {
     doc.lineCap('butt').moveTo(m2p(coord_x), m2p(coord_y)).lineTo(m2p(coord_x + width), m2p(coord_y)).lineWidth(1).stroke("black");
 }
 
-function page_header(doc :PDFDocument, texte = "", coord_x = 10, coord_y = 10, width = 190) {
+function page_header(doc :PDFKit.PDFDocument, texte = "", coord_x = 10, coord_y = 10, width = 190) {
     doc.fontSize(title_font_size).text(texte, m2p(coord_x), m2p(coord_y)).fillOpacity(1).fillAndStroke('black');
     draw_line(doc, coord_x, coord_y + 6, width)
     doc.fontSize(default_font_size)
     doc.moveDown();
 }
 
-function page_footer(doc : PDFDocument, folio = 1, coord_x = 10, coord_y = 270, width = 190) {
+function page_footer(doc : PDFKit.PDFDocument, folio = 1, coord_x = 10, coord_y = 270, width = 190) {
     draw_line(doc, coord_x, coord_y, width)
     doc.fontSize(default_font_size).fillOpacity(1).fillAndStroke('black');
     doc.text(``, m2p(coord_x), m2p(coord_y + 1));
@@ -65,7 +65,7 @@ function page_footer(doc : PDFDocument, folio = 1, coord_x = 10, coord_y = 270, 
     doc.text(`${folio}/2`, { align: 'right', width: m2p(width) })
 }
 
-function display_informations(doc: PDFDocument, infos: any, coord_y: number) {
+function display_informations(doc: PDFKit.PDFDocument, infos: any, coord_y: number) {
     for (let index = 0; index < infos.length; index++) {
         const info = infos[index];
         doc.text("", m2p(10), m2p(coord_y))
@@ -137,12 +137,24 @@ async function generate_report(preflight: string, vignette: string, report: stri
     last_y += 10
 
     let index_type_warn = 0
-    jsonreport["Warnings"].forEach(warn => {
-        doc.rect(m2p(10), m2p(last_y), m2p(3), m2p(3)).lineWidth(0.5).fillOpacity(0.5).fillAndStroke(warings_colors[index_type_warn], warings_colors[index_type_warn]);
-        doc.fontSize(default_font_size).font('Times-Roman').fillAndStroke("#000").fillOpacity(1).text(warn['Message'], m2p(15), m2p(last_y))
-        last_y += 10
-        index_type_warn += 1
-    });
+    let index_type_err = 0
+    if (jsonreport["Warnings"]){
+        jsonreport["Warnings"].forEach(warn => {
+            doc.rect(m2p(10), m2p(last_y), m2p(3), m2p(3)).lineWidth(0.5).fillOpacity(0.5).fillAndStroke(warings_colors[index_type_warn], warings_colors[index_type_warn]);
+            doc.fontSize(default_font_size).font('Times-Roman').fillAndStroke("#000").fillOpacity(1).text(warn['Message'], m2p(15), m2p(last_y))
+            last_y += 10
+            index_type_warn += 1
+        });
+    }
+
+    if (jsonreport["Errors"]){
+        jsonreport["Errors"].forEach(warn => {
+            doc.rect(m2p(10), m2p(last_y), m2p(3), m2p(3)).lineWidth(0.5).fillOpacity(0.5).fillAndStroke(errors_colors[index_type_err], errors_colors[index_type_warn]);
+            doc.fontSize(default_font_size).font('Times-Roman').fillAndStroke("#000").fillOpacity(1).text(warn['Message'], m2p(15), m2p(last_y))
+            last_y += 10
+            index_type_warn += 1
+        });
+    }
     page_footer(doc, 1)
 
     /**
@@ -164,21 +176,48 @@ async function generate_report(preflight: string, vignette: string, report: stri
     // afficher les zones de Warning
     index_type_warn = 0
     let index_loc = 0
-    jsonreport["Warnings"].forEach(warn => {
-        warn['Locations']['Location'].forEach(loc => {
-            let x = (loc["minX"]);
-            let y = (mh - loc["maxY"]);
-            let w = (loc["maxX"] - loc["minX"]);
-            let h = ((mh - loc["minY"]) - (mh - loc["maxY"]));
-            let rx = (10 + x * ratio); // on decale le point d'origne a 10 / 10 mm
-            let ry = (10 + y * ratio); // on decale le point d'origne a 10 / 10 mm
-            let rw = (w * ratio);
-            let rh = (h * ratio);
-            doc.rect(m2p(rx), m2p(ry), m2p(rw), m2p(rh)).lineWidth(0.5).fillOpacity(0.5).fillAndStroke(warings_colors[index_type_warn], warings_colors[index_type_warn]);
-            index_loc += 1
+    if (jsonreport["Warnings"]){
+        jsonreport["Warnings"].forEach(warn => {
+            warn['Locations']['Location'].forEach(loc => {
+                let x = (loc["minX"]);
+                let y = (mh - loc["maxY"]);
+                let w = (loc["maxX"] - loc["minX"]);
+                let h = ((mh - loc["minY"]) - (mh - loc["maxY"]));
+                let rx = (10 + x * ratio); // on decale le point d'origne a 10 / 10 mm
+                let ry = (10 + y * ratio); // on decale le point d'origne a 10 / 10 mm
+                let rw = (w * ratio);
+                let rh = (h * ratio);
+                doc.rect(m2p(rx), m2p(ry), m2p(rw), m2p(rh)).lineWidth(0.5).fillOpacity(0.5).fillAndStroke(warings_colors[index_type_warn], warings_colors[index_type_warn]);
+                index_loc += 1
+            });
+            index_type_warn += 1
         });
-        index_type_warn += 1
-    });
+    }
+
+
+     // afficher les zones de Warning
+     index_type_err = 0
+     index_loc = 0
+     if (jsonreport["Errors"]){
+         jsonreport["Errors"].forEach(warn => {
+             warn['Locations']['Location'].forEach(loc => {
+                 let x = (loc["minX"]);
+                 let y = (mh - loc["maxY"]);
+                 let w = (loc["maxX"] - loc["minX"]);
+                 let h = ((mh - loc["minY"]) - (mh - loc["maxY"]));
+                 let rx = (10 + x * ratio); // on decale le point d'origne a 10 / 10 mm
+                 let ry = (10 + y * ratio); // on decale le point d'origne a 10 / 10 mm
+                 let rw = (w * ratio);
+                 let rh = (h * ratio);
+                 doc.rect(m2p(rx), m2p(ry), m2p(rw), m2p(rh)).lineWidth(0.5).fillOpacity(0.5).fillAndStroke(errors_colors[index_type_err], errors_colors[index_type_err]);
+                 index_loc += 1
+             });
+             index_type_warn += 1
+         });
+     }
+
+
+
     page_footer(doc, 2)
     doc.end()
 
