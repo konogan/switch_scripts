@@ -22,7 +22,8 @@
   "license": "ISC",
   "main": "main.js",
   "scripts": {
-    "transpile": "SwitchScriptTool --transpile ."
+    "transpile": "SwitchScriptTool --transpile .",
+    "pack": "SwitchScriptTool --pack . ./dist/"
   },
   "dependencies": {
     "fs-extra": "^9.0.1",
