@@ -5,8 +5,6 @@ import xml2js from 'xml2js';
 import getStream from "get-stream"
 import PDFDocument from "pdfkit";
 
-const parser = new xml2js.Parser();
-
 async function jobArrived(s: Switch, flowElement: FlowElement, job: Job) {
     try {
         const jobPath = await job.get(AccessLevel.ReadOnly);
@@ -41,7 +39,7 @@ const date = jour + ' ' + time;
 const errors_colors = ['#FF8800', '#FFD500', '#FFAA00', '#FFBB33', '#FFB366'];
 const warings_colors = ['#FF8800', '#FFD500', '#FFAA00', '#FFBB33', '#FFB366'];
 
-function m2p(mm : number):number {
+function m2p(mm: number): number {
     return mm * 2.834666
 }
 
@@ -49,14 +47,14 @@ function draw_line(doc: PDFKit.PDFDocument, coord_x: number, coord_y: number, wi
     doc.lineCap('butt').moveTo(m2p(coord_x), m2p(coord_y)).lineTo(m2p(coord_x + width), m2p(coord_y)).lineWidth(1).stroke("black");
 }
 
-function page_header(doc :PDFKit.PDFDocument, texte = "", coord_x = 10, coord_y = 10, width = 190) {
+function page_header(doc: PDFKit.PDFDocument, texte = "", coord_x = 10, coord_y = 10, width = 190) {
     doc.fontSize(title_font_size).text(texte, m2p(coord_x), m2p(coord_y)).fillOpacity(1).fillAndStroke('black');
     draw_line(doc, coord_x, coord_y + 6, width)
     doc.fontSize(default_font_size)
     doc.moveDown();
 }
 
-function page_footer(doc : PDFKit.PDFDocument, folio = 1, coord_x = 10, coord_y = 270, width = 190) {
+function page_footer(doc: PDFKit.PDFDocument, folio = 1, coord_x = 10, coord_y = 270, width = 190) {
     draw_line(doc, coord_x, coord_y, width)
     doc.fontSize(default_font_size).fillOpacity(1).fillAndStroke('black');
     doc.text(``, m2p(coord_x), m2p(coord_y + 1));
@@ -78,11 +76,11 @@ function display_informations(doc: PDFKit.PDFDocument, infos: any, coord_y: numb
 
 async function generate_report(preflight: string, vignette: string, report: string, job: Job) {
     let xml = await fs.readFile(preflight);
-
-        .then(function (res : Object) {
+    let jsonreport = await xml2js.parseStringPromise(xml, { trim: true, normalize: true, explicitArray: false, ignoreAttrs: false, mergeAttrs: true })
+        .then(function (res: Object) {
             return res["PreflightReport"]
         })
-        .catch(function (err : Error) {
+        .catch(function (err: Error) {
             job.log(LogLevel.Warning, "Error during xml parsing : %1", [err.message]);
         });
 
@@ -137,9 +135,9 @@ async function generate_report(preflight: string, vignette: string, report: stri
 
     let index_type_warn = 0
     let index_type_err = 0
-    if (jsonreport["Warnings"]){
+    if (jsonreport["Warnings"]) {
         const warns = Object.entries(jsonreport["Warnings"])
-        warns.forEach((key,warn) => {
+        warns.forEach((key, warn) => {
             doc.rect(m2p(10), m2p(last_y), m2p(3), m2p(3)).lineWidth(0.5).fillOpacity(0.5).fillAndStroke(warings_colors[index_type_warn], warings_colors[index_type_warn]);
             doc.fontSize(default_font_size).font('Times-Roman').fillAndStroke("#000").fillOpacity(1).text(warn['Message'], m2p(15), m2p(last_y))
             last_y += 10
