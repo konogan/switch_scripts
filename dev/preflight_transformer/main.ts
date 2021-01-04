@@ -69,8 +69,8 @@ function display_informations(doc: PDFKit.PDFDocument, infos: any, coord_y: numb
     for (let index = 0; index < infos.length; index++) {
         const info = infos[index];
         doc.text("", m2p(10), m2p(coord_y))
-        doc.fontSize(default_font_size).font('Times-Bold').text(Object.keys(info), m2p(10), m2p(coord_y))
-        doc.fontSize(default_font_size).font('Times-Roman').text(Object.values(info), m2p(80), m2p(coord_y))
+        //doc.fontSize(default_font_size).font('Times-Bold').text(Object.keys(info), m2p(10), m2p(coord_y))
+        //doc.fontSize(default_font_size).font('Times-Roman').text(Object.values(info), m2p(80), m2p(coord_y))
         coord_y += 5
     }
     return coord_y;
@@ -79,7 +79,6 @@ function display_informations(doc: PDFKit.PDFDocument, infos: any, coord_y: numb
 async function generate_report(preflight: string, vignette: string, report: string, job: Job) {
     let xml = await fs.readFile(preflight);
 
-    let jsonreport = await xml2js.parseStringPromise(xml, { trim: true, normalize: true, explicitArray: false, ignoreAttrs: false, mergeAttrs: true })
         .then(function (res : Object) {
             return res["PreflightReport"]
         })
@@ -139,7 +138,8 @@ async function generate_report(preflight: string, vignette: string, report: stri
     let index_type_warn = 0
     let index_type_err = 0
     if (jsonreport["Warnings"]){
-        jsonreport["Warnings"].forEach(warn => {
+        const warns = Object.entries(jsonreport["Warnings"])
+        warns.forEach((key,warn) => {
             doc.rect(m2p(10), m2p(last_y), m2p(3), m2p(3)).lineWidth(0.5).fillOpacity(0.5).fillAndStroke(warings_colors[index_type_warn], warings_colors[index_type_warn]);
             doc.fontSize(default_font_size).font('Times-Roman').fillAndStroke("#000").fillOpacity(1).text(warn['Message'], m2p(15), m2p(last_y))
             last_y += 10
@@ -147,14 +147,14 @@ async function generate_report(preflight: string, vignette: string, report: stri
         });
     }
 
-    if (jsonreport["Errors"]){
-        jsonreport["Errors"].forEach(warn => {
-            doc.rect(m2p(10), m2p(last_y), m2p(3), m2p(3)).lineWidth(0.5).fillOpacity(0.5).fillAndStroke(errors_colors[index_type_err], errors_colors[index_type_warn]);
-            doc.fontSize(default_font_size).font('Times-Roman').fillAndStroke("#000").fillOpacity(1).text(warn['Message'], m2p(15), m2p(last_y))
-            last_y += 10
-            index_type_warn += 1
-        });
-    }
+    // if (jsonreport["Errors"]){
+    //     Array.from(jsonreport["Errors"]).forEach(err => {
+    //         doc.rect(m2p(10), m2p(last_y), m2p(3), m2p(3)).lineWidth(0.5).fillOpacity(0.5).fillAndStroke(errors_colors[index_type_err], errors_colors[index_type_warn]);
+    //         doc.fontSize(default_font_size).font('Times-Roman').fillAndStroke("#000").fillOpacity(1).text(err['Message'], m2p(15), m2p(last_y))
+    //         last_y += 10
+    //         index_type_warn += 1
+    //     });
+    // }
     page_footer(doc, 1)
 
     /**
@@ -176,45 +176,45 @@ async function generate_report(preflight: string, vignette: string, report: stri
     // afficher les zones de Warning
     index_type_warn = 0
     let index_loc = 0
-    if (jsonreport["Warnings"]){
-        jsonreport["Warnings"].forEach(warn => {
-            warn['Locations']['Location'].forEach(loc => {
-                let x = (loc["minX"]);
-                let y = (mh - loc["maxY"]);
-                let w = (loc["maxX"] - loc["minX"]);
-                let h = ((mh - loc["minY"]) - (mh - loc["maxY"]));
-                let rx = (10 + x * ratio); // on decale le point d'origne a 10 / 10 mm
-                let ry = (10 + y * ratio); // on decale le point d'origne a 10 / 10 mm
-                let rw = (w * ratio);
-                let rh = (h * ratio);
-                doc.rect(m2p(rx), m2p(ry), m2p(rw), m2p(rh)).lineWidth(0.5).fillOpacity(0.5).fillAndStroke(warings_colors[index_type_warn], warings_colors[index_type_warn]);
-                index_loc += 1
-            });
-            index_type_warn += 1
-        });
-    }
+    // if (jsonreport["Warnings"]){
+    //     Array.from(jsonreport["Warnings"]).forEach(warn => {
+    //         warn['Locations']['Location'].forEach(loc => {
+    //             let x = (loc["minX"]);
+    //             let y = (mh - loc["maxY"]);
+    //             let w = (loc["maxX"] - loc["minX"]);
+    //             let h = ((mh - loc["minY"]) - (mh - loc["maxY"]));
+    //             let rx = (10 + x * ratio); // on decale le point d'origne a 10 / 10 mm
+    //             let ry = (10 + y * ratio); // on decale le point d'origne a 10 / 10 mm
+    //             let rw = (w * ratio);
+    //             let rh = (h * ratio);
+    //             doc.rect(m2p(rx), m2p(ry), m2p(rw), m2p(rh)).lineWidth(0.5).fillOpacity(0.5).fillAndStroke(warings_colors[index_type_warn], warings_colors[index_type_warn]);
+    //             index_loc += 1
+    //         });
+    //         index_type_warn += 1
+    //     });
+    // }
 
 
-     // afficher les zones de Warning
-     index_type_err = 0
-     index_loc = 0
-     if (jsonreport["Errors"]){
-         jsonreport["Errors"].forEach(warn => {
-             warn['Locations']['Location'].forEach(loc => {
-                 let x = (loc["minX"]);
-                 let y = (mh - loc["maxY"]);
-                 let w = (loc["maxX"] - loc["minX"]);
-                 let h = ((mh - loc["minY"]) - (mh - loc["maxY"]));
-                 let rx = (10 + x * ratio); // on decale le point d'origne a 10 / 10 mm
-                 let ry = (10 + y * ratio); // on decale le point d'origne a 10 / 10 mm
-                 let rw = (w * ratio);
-                 let rh = (h * ratio);
-                 doc.rect(m2p(rx), m2p(ry), m2p(rw), m2p(rh)).lineWidth(0.5).fillOpacity(0.5).fillAndStroke(errors_colors[index_type_err], errors_colors[index_type_err]);
-                 index_loc += 1
-             });
-             index_type_warn += 1
-         });
-     }
+    //  // afficher les zones de Warning
+    //  index_type_err = 0
+    //  index_loc = 0
+    //  if (jsonreport["Errors"]){
+    //     Array.from(jsonreport["Errors"]).forEach(err => {
+    //          err['Locations']['Location'].forEach(loc => {
+    //              let x = (loc["minX"]);
+    //              let y = (mh - loc["maxY"]);
+    //              let w = (loc["maxX"] - loc["minX"]);
+    //              let h = ((mh - loc["minY"]) - (mh - loc["maxY"]));
+    //              let rx = (10 + x * ratio); // on decale le point d'origne a 10 / 10 mm
+    //              let ry = (10 + y * ratio); // on decale le point d'origne a 10 / 10 mm
+    //              let rw = (w * ratio);
+    //              let rh = (h * ratio);
+    //              doc.rect(m2p(rx), m2p(ry), m2p(rw), m2p(rh)).lineWidth(0.5).fillOpacity(0.5).fillAndStroke(errors_colors[index_type_err], errors_colors[index_type_err]);
+    //              index_loc += 1
+    //          });
+    //          index_type_warn += 1
+    //      });
+    //  }
 
 
 
