@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <Object>
     <ElementFields>
         <Name Editor="hide" Type="string">preflight_transformer</Name>
@@ -7,7 +7,7 @@
         <Keywords Editor="hide" Type="string"/>
         <Tooltip Editor="hide" Type="string"/>
         <IncomingConnections Editor="hide" RequireAtLeastOne="Yes">Yes</IncomingConnections>
-        <OutgoingConnections Editor="hide" RequireAtLeastOne="Yes" DetailedInfo="">Unlimited</OutgoingConnections>
+        <OutgoingConnections DetailedInfo="" Editor="hide" RequireAtLeastOne="Yes">Unlimited</OutgoingConnections>
         <ConnectionType Editor="hide">Move</ConnectionType>
         <FunctionsNodeJSScript Editor="hide"/>
         <ExecutionMode Editor="hide">Serialized</ExecutionMode>
@@ -16,7 +16,7 @@
         <PerformanceTuning Editor="hide">No</PerformanceTuning>
         <IdleAfterJob Editor="hide">0</IdleAfterJob>
         <PositionInElementPane Editor="hide">Configurators</PositionInElementPane>
-        <SubcategoryInElementPane Editor="hide">&lt;ValueDescription Type="stringlist">&lt;Value>Custom&lt;/Value>&lt;/ValueDescription></SubcategoryInElementPane>
+        <SubcategoryInElementPane Editor="hide">&lt;ValueDescription Type=&quot;stringlist&quot;&gt;&lt;Value&gt;Custom&lt;/Value&gt;&lt;/ValueDescription&gt;</SubcategoryInElementPane>
         <DispositionInElementPane Editor="hide" Type="number"/>
         <Description Editor="hide" Type="string"/>
         <Compatibility Editor="hide" Type="string"/>

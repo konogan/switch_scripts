@@ -1,3 +1,4 @@
+
 <Manifest>
     <ScripterInstanceName>preflight_transformer</ScripterInstanceName>
     <ScriptPackageFormatVersion>1.0</ScriptPackageFormatVersion>
@@ -5,8 +6,8 @@
     <ScriptPackageType>Script</ScriptPackageType>
     <ScriptDeclarationFile>preflight_transformer.xml</ScriptDeclarationFile>
     <ScriptProgramFiles>
-        <ScriptProgramFile ScriptLanguage="NodeJSScript">main.js</ScriptProgramFile>
+        <ScriptProgramFile ScriptLanguage="NodeJSScript">main.ts</ScriptProgramFile>
     </ScriptProgramFiles>
-    <ScriptIconFile/>
+    <ScriptIconFile>preflight_transformer.png</ScriptIconFile>
     <LocalizationItems/>
 </Manifest>
