@@ -36,8 +36,8 @@ const today = new Date();
 let jour = today.toLocaleDateString("fr-FR", { year: "numeric", month: "2-digit", day: "2-digit" });
 let time = today.toLocaleTimeString("fr-FR", { hour: "numeric", minute: "2-digit", second: "2-digit" });
 const date = jour + ' ' + time;
-const errors_colors = ['#FF8800', '#FFD500', '#FFAA00', '#FFBB33', '#FFB366'];
-const warings_colors = ['#FF8800', '#FFD500', '#FFAA00', '#FFBB33', '#FFB366'];
+const errors_colors = ["#E32636", "#C7212F", "#AA1D29", "#E32636", "#E7414F", "#EA5C68", "#EE7781", "#F1939B", "#F5AEB4", "#F8C9CD", "#FCE4E6"];
+const warnings_colors = ["#FF7E00", "#FF8E20", "#FF9E40", "#FFAE60", "#FFBF80", "#FFCF9F", "#FFDFBF", "#FFEFDF", "#FFEFDF", "#FFEFDF", "#FFEFDF"];
 
 function m2p(mm: number): number {
     return mm * 2.834666
@@ -46,6 +46,7 @@ function m2p(mm: number): number {
 function draw_line(doc: PDFKit.PDFDocument, coord_x: number, coord_y: number, width: number) {
     doc.lineCap('butt').moveTo(m2p(coord_x), m2p(coord_y)).lineTo(m2p(coord_x + width), m2p(coord_y)).lineWidth(1).stroke("black");
 }
+
 
 function page_header(doc: PDFKit.PDFDocument, texte = "", coord_x = 10, coord_y = 10, width = 190) {
     doc.fontSize(title_font_size).text(texte, m2p(coord_x), m2p(coord_y)).fillOpacity(1).fillAndStroke('black');
@@ -67,8 +68,8 @@ function display_informations(doc: PDFKit.PDFDocument, infos: any, coord_y: numb
     for (let index = 0; index < infos.length; index++) {
         const info = infos[index];
         doc.text("", m2p(10), m2p(coord_y))
-        //doc.fontSize(default_font_size).font('Times-Bold').text(Object.keys(info), m2p(10), m2p(coord_y))
-        //doc.fontSize(default_font_size).font('Times-Roman').text(Object.values(info), m2p(80), m2p(coord_y))
+        doc.fontSize(default_font_size).font('Times-Bold').text(`${Object.keys(info)[0]}`, m2p(10), m2p(coord_y))
+        doc.fontSize(default_font_size).font('Times-Roman').text(`${Object.values(info)[0]}`, m2p(80), m2p(coord_y))
         coord_y += 5
     }
     return coord_y;
@@ -130,29 +131,50 @@ async function generate_report(preflight: string, vignette: string, report: stri
     draw_line(doc, 10, last_y, 190)
     last_y += 5
 
-    doc.fontSize(default_font_size).font('Times-Bold').text('Attention:', m2p(10), m2p(last_y))
-    last_y += 10
 
-    let index_type_warn = 0
-    let index_type_err = 0
-    if (jsonreport["Warnings"]) {
-        const warns = Object.entries(jsonreport["Warnings"])
-        warns.forEach((key, warn) => {
-            doc.rect(m2p(10), m2p(last_y), m2p(3), m2p(3)).lineWidth(0.5).fillOpacity(0.5).fillAndStroke(warings_colors[index_type_warn], warings_colors[index_type_warn]);
-            doc.fontSize(default_font_size).font('Times-Roman').fillAndStroke("#000").fillOpacity(1).text(warn['Message'], m2p(15), m2p(last_y))
-            last_y += 10
-            index_type_warn += 1
-        });
+    function writeMessage(message: string, color: string) {
+        doc.rect(m2p(10), m2p(last_y), m2p(3), m2p(3)).lineWidth(0.5).fillOpacity(0.5).fillAndStroke(color, color);
+        doc.fontSize(default_font_size).font('Times-Roman').fillAndStroke("#000").fillOpacity(1).text(message, m2p(15), m2p(last_y))
+        last_y += 10
     }
 
-    // if (jsonreport["Errors"]){
-    //     Array.from(jsonreport["Errors"]).forEach(err => {
-    //         doc.rect(m2p(10), m2p(last_y), m2p(3), m2p(3)).lineWidth(0.5).fillOpacity(0.5).fillAndStroke(errors_colors[index_type_err], errors_colors[index_type_warn]);
-    //         doc.fontSize(default_font_size).font('Times-Roman').fillAndStroke("#000").fillOpacity(1).text(err['Message'], m2p(15), m2p(last_y))
-    //         last_y += 10
-    //         index_type_warn += 1
-    //     });
-    // }
+
+    if (jsonreport["Warnings"]) {
+
+        let index_type_warn = 0
+        if (Array.isArray(jsonreport["Warnings"])) {
+            doc.fontSize(default_font_size).font('Times-Bold').text('Warnings :', m2p(10), m2p(last_y))
+            last_y += 10
+            jsonreport["Warnings"].forEach(warn => {
+                writeMessage(warn['Message'], warnings_colors[index_type_warn % 11])
+                index_type_warn++
+            });
+        }
+        else if (jsonreport["Warnings"]['Message']) {
+            doc.fontSize(default_font_size).font('Times-Bold').text('Warning:', m2p(10), m2p(last_y))
+            last_y += 10
+            writeMessage(jsonreport["Warnings"]['Message'], warnings_colors[index_type_warn % 11])
+        }
+    }
+
+    if (jsonreport["Errors"]) {
+
+        let index_type_err = 0
+        if (Array.isArray(jsonreport["Errors"])) {
+            doc.fontSize(default_font_size).font('Times-Bold').text('Erreurs :', m2p(10), m2p(last_y))
+            last_y += 10
+            jsonreport["Errors"].forEach(err => {
+                writeMessage(err['Message'], errors_colors[index_type_err % 11])
+                index_type_err++
+            });
+        }
+        else if (jsonreport["Errors"]['Message']) {
+            doc.fontSize(default_font_size).font('Times-Bold').text('Erreur:', m2p(10), m2p(last_y))
+            last_y += 10
+            writeMessage(jsonreport["Errors"]['Message'], errors_colors[index_type_err % 11])
+        }
+    }
+
     page_footer(doc, 1)
 
     /**
@@ -171,49 +193,58 @@ async function generate_report(preflight: string, vignette: string, report: stri
     doc.rect(m2p(10) + m2p(bx * ratio), m2p(10) + m2p(by * ratio), m2p(bw * ratio), m2p(bh * ratio)).lineWidth(1).stroke("blue");
     doc.rect(m2p(10) + m2p(tx * ratio), m2p(10) + m2p(ty * ratio), m2p(tw * ratio), m2p(th * ratio)).lineWidth(1).stroke("green");
 
-    // afficher les zones de Warning
-    index_type_warn = 0
-    let index_loc = 0
-    // if (jsonreport["Warnings"]){
-    //     Array.from(jsonreport["Warnings"]).forEach(warn => {
-    //         warn['Locations']['Location'].forEach(loc => {
-    //             let x = (loc["minX"]);
-    //             let y = (mh - loc["maxY"]);
-    //             let w = (loc["maxX"] - loc["minX"]);
-    //             let h = ((mh - loc["minY"]) - (mh - loc["maxY"]));
-    //             let rx = (10 + x * ratio); // on decale le point d'origne a 10 / 10 mm
-    //             let ry = (10 + y * ratio); // on decale le point d'origne a 10 / 10 mm
-    //             let rw = (w * ratio);
-    //             let rh = (h * ratio);
-    //             doc.rect(m2p(rx), m2p(ry), m2p(rw), m2p(rh)).lineWidth(0.5).fillOpacity(0.5).fillAndStroke(warings_colors[index_type_warn], warings_colors[index_type_warn]);
-    //             index_loc += 1
-    //         });
-    //         index_type_warn += 1
-    //     });
-    // }
+    // afficher les zones 
+    function drawLocations(locations: any, color: string) {
+        if (locations['Location']) {
+            if (Array.isArray(locations['Location'])) {
+                locations['Location'].forEach(loc => {
+                    drawLocation(loc, color)
+                });
+            }
+            else {
+                drawLocation(locations['Location'], color)
+            }
+        }
+    }
+
+    function drawLocation(loc: any, color: string) {
+        let x = (loc["minX"]);
+        let y = (mh - loc["maxY"]);
+        let w = (loc["maxX"] - loc["minX"]);
+        let h = ((mh - loc["minY"]) - (mh - loc["maxY"]));
+        let rx = (10 + x * ratio); // on decale le point d'origne a 10 / 10 mm
+        let ry = (10 + y * ratio); // on decale le point d'origne a 10 / 10 mm
+        let rw = (w * ratio);
+        let rh = (h * ratio);
+        doc.rect(m2p(rx), m2p(ry), m2p(rw), m2p(rh)).lineWidth(0.5).fillOpacity(0.5).fillAndStroke(color, color);
+    }
+
+    if (jsonreport["Warnings"]) {
+        let index_type_warn = 0
+        if (Array.isArray(jsonreport["Warnings"])) {
+            jsonreport["Warnings"].forEach(warn => {
+                drawLocations(warn['Locations'], warnings_colors[index_type_warn % 11])
+                index_type_warn++
+            });
+        }
+        else if (jsonreport["Warnings"]['Message']) {
+            drawLocations(jsonreport["Warnings"]['Locations'], warnings_colors[index_type_warn % 11])
+        }
+    }
 
 
-    //  // afficher les zones de Warning
-    //  index_type_err = 0
-    //  index_loc = 0
-    //  if (jsonreport["Errors"]){
-    //     Array.from(jsonreport["Errors"]).forEach(err => {
-    //          err['Locations']['Location'].forEach(loc => {
-    //              let x = (loc["minX"]);
-    //              let y = (mh - loc["maxY"]);
-    //              let w = (loc["maxX"] - loc["minX"]);
-    //              let h = ((mh - loc["minY"]) - (mh - loc["maxY"]));
-    //              let rx = (10 + x * ratio); // on decale le point d'origne a 10 / 10 mm
-    //              let ry = (10 + y * ratio); // on decale le point d'origne a 10 / 10 mm
-    //              let rw = (w * ratio);
-    //              let rh = (h * ratio);
-    //              doc.rect(m2p(rx), m2p(ry), m2p(rw), m2p(rh)).lineWidth(0.5).fillOpacity(0.5).fillAndStroke(errors_colors[index_type_err], errors_colors[index_type_err]);
-    //              index_loc += 1
-    //          });
-    //          index_type_warn += 1
-    //      });
-    //  }
-
+    if (jsonreport["Errors"]) {
+        let index_type_err = 0
+        if (Array.isArray(jsonreport["Errors"])) {
+            jsonreport["Errors"].forEach(warn => {
+                drawLocations(warn['Locations'], errors_colors[index_type_err % 11])
+                index_type_err++
+            });
+        }
+        else if (jsonreport["Errors"]['Message']) {
+            drawLocations(jsonreport["Errors"]['Locations'], errors_colors[index_type_err % 11])
+        }
+    }
 
 
     page_footer(doc, 2)
