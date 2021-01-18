@@ -1,0 +1,39 @@
+{
+    "license": "UNLICENSED",
+    "name": "xmlexporter",
+    "private": true,
+    "version": "0.0.1",
+    "description": "Source  script for a Enfocus Switch script tool, intended to export XML dataset to file",
+    "keywords": [
+        "enfocus",
+        "switch",
+        "sscript"
+    ],
+    "author": "CMI - Dirty Coding Team : the Unicorns lovers",
+    "contributors": [
+        {
+            "name": "Konogan Cossec",
+            "email": "kcossec@cmimedia.fr"
+        },
+        {
+            "name": "Tristan Juhé",
+            "email": "tjuhe@cmimedia.fr"
+        }
+    ],
+    "scripts": {
+        "transpile": "SwitchScriptTool --transpile .",
+        "pack": "SwitchScriptTool --pack . ../../production/"
+    },
+    "dependencies": {
+        "fs-extra": "^9.0.1",
+        "tmp": "^0.2.1",
+        "xml-writer": "^1.7.0"
+    },
+    "devDependencies": {
+        "@types/fs-extra": "^9.0.6",
+        "@types/node": "^12.12.70",
+        "@types/switch-scripting": "https://github.com/enfocus-switch/types-switch-scripting/archive/1.0.1.tar.gz",
+        "@types/tmp": "^0.2.0",
+        "@types/xml2json": "^0.11.3"
+    }
+}
