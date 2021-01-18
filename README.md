@@ -11,21 +11,30 @@ ___
 ## Preflight Transformer
 The purpose of this script is to transform the response from a preflight into a PDF file that overlays alerts and messages.
 
-## Installation
+
+
+
+## XMLExporter
+The purpose of this script is to export all variables and datasets attached to a job in an XML file.
+
+
+
+___
+## Installations
 
 #### Develop 
 
 ```sh
-$ cd dev/preflight_transformer
+$ cd dev/[projectScript]
 $ npm run transpile
 ```
-open preflight_transformer in SwitchScripter and save it
+open [projectScript] in SwitchScripter and save it
 
 
 #### Production
 
 ```sh
-$ cd dev/preflight_transformer
+$ cd dev/[projectScript]
 $ npm run pack
 ```
 the production script is generated in production/
