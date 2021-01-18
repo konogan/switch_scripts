@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<PreflightReport author="CMI Publishing" unit="mm" datetime="2020-12-23T15:16:39+01:00">
+  <PreflightProfile>GENERIC_MAG</PreflightProfile>
+  <Title>dette_Couv_5.indd</Title>
+  <DocumentName>MARH_MARG_0001_P002_1.pdf</DocumentName>
+  <PDFVersion major="1" minor="3">1.3</PDFVersion>
+  <Creator>Adobe InDesign 16.0 (Macintosh)</Creator>
+  <OutputIntent type="GTS_PDFX">
+    <Var name="Output condition identifier">ISO Coated v2 300% (ECI)</Var>
+    <Var name="Registry name">http://www.color.org</Var>
+    <Var name="Additional information">ISO Coated v2 300% (ECI)</Var>
+    <Var name="Destination output profile">ISO Coated v2 300% (ECI)</Var>
+  </OutputIntent>
+  <Errors>
+    <Message>La couverture d'encre totale est supérieur(e) à 320% (1x à la page 1)</Message>
+    <Locations>
+      <Location page="1" minX="34.292" minY="19.292" maxX="88.292" maxY="97.292"/>
+    </Locations>
+  </Errors>
+  <Warnings>
+    <Message>La résolution d'image est 148 x 145 ppi - image couleur ou en gamme de gris est inférieur(e) à 250 ppi (4x à la page 1)</Message>
+    <Locations>
+      <Location page="1" minX="176.636" minY="249.441" maxX="197.052" maxY="291.057"/>
+      <Location page="1" minX="176.636" minY="249.441" maxX="188.646" maxY="277.068"/>
+      <Location page="1" minX="176.636" minY="249.441" maxX="188.303" maxY="278.817"/>
+      <Location page="1" minX="188.989" minY="249.441" maxX="197.052" maxY="278.467"/>
+    </Locations>
+  </Warnings>
+  <PageBoxes>
+    <Trimbox width="230" height="297" minX="10.292" minY="10.292" maxX="240.292" maxY="307.292"/>
+    <Bleedbox width="240" height="307" minX="5.292" minY="5.292" maxX="245.292" maxY="312.292"/>
+    <Mediabox width="250.583" height="317.583" minX="0" minY="0" maxX="250.583" maxY="317.583"/>
+  </PageBoxes>
+  <Inks>
+    <Ink>Cyan</Ink>
+    <Ink>Magenta</Ink>
+    <Ink>Yellow</Ink>
+    <Ink>Black</Ink>
+  </Inks>
+</PreflightReport>

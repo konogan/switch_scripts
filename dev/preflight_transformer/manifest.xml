@@ -3,7 +3,7 @@
     <ScripterInstanceName>preflight_transformer</ScripterInstanceName>
     <ScriptPackageFormatVersion>1.0</ScriptPackageFormatVersion>
     <ScriptPasswordProtected>No</ScriptPasswordProtected>
-    <ScriptPackageType>Script</ScriptPackageType>
+    <ScriptPackageType>App/Configurator</ScriptPackageType>
     <ScriptDeclarationFile>preflight_transformer.xml</ScriptDeclarationFile>
     <ScriptProgramFiles>
         <ScriptProgramFile ScriptLanguage="NodeJSScript">main.ts</ScriptProgramFile>
