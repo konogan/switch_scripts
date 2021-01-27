@@ -19,7 +19,7 @@
                 <xsl:value-of select="/EnfocusReport/GeneralDocInfo/DocumentProperties/CreationDate"/>
             </xsl:attribute>
             <xsl:copy-of select="/EnfocusReport/ProcessInfo/PreflightProfile"/>
-            <xsl:copy-of select="/EnfocusReport/GeneralDocInfo[1]/DocumentProperties/Title"/>
+            <xsl:copy-of select="/EnfocusReport/GeneralDocInfo/DocumentProperties/Title"/>
             <xsl:copy-of select="/EnfocusReport/GeneralDocInfo/DocumentProperties/DocumentName"/>
             <xsl:copy-of select="/EnfocusReport/GeneralDocInfo/DocumentProperties/PDFVersion"/>
             <xsl:copy-of select="/EnfocusReport/GeneralDocInfo/DocumentProperties/Creator"/>
