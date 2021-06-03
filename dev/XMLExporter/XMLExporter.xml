@@ -3,7 +3,7 @@
     <ElementFields>
         <Name Editor="hide" Type="string">XMLExporter</Name>
         <DisplayName Editor="hide" Type="string"/>
-        <Version Editor="hide" Type="number">2</Version>
+        <Version Editor="hide" Type="number">3</Version>
         <Keywords Editor="hide" Type="string"/>
         <Tooltip Editor="hide" Type="string"/>
         <IncomingConnections Editor="hide" RequireAtLeastOne="Yes">Yes</IncomingConnections>

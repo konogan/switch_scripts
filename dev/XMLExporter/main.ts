@@ -13,7 +13,8 @@ async function jobArrived(s: Switch, flowElement: FlowElement, job: Job) {
         const datas = await job.getPrivateData();
 
         datas.forEach(data => {
-            xw.startElement(data.tag);
+            xw.startElement("item")
+            xw.writeAttribute("name",data.tag);
             xw.text(data.value);
             xw.endElement();
         });
@@ -39,7 +40,7 @@ async function jobArrived(s: Switch, flowElement: FlowElement, job: Job) {
 
         const xml_temp = tmp.fileSync();
         fs.writeFileSync(xml_temp.name, xw.toString());
-        const xmlExport = job.getName() + '.xml';
+        const xmlExport = job.getName().replace(".pdf",".xml");
         const newJob = await job.createChild(xml_temp.name);
         await newJob.sendToSingle(xmlExport); //mise a dsipo du fichier genere dans la suite
 
