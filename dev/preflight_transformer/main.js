@@ -128,7 +128,7 @@ async function generate_report(preflight, vignette, report, job) {
         return res["PreflightReport"];
     })
         .catch(function (err) {
-        job.log(LogLevel.Warning, "Error during xml parsing : %1", [err.message]);
+        console.log(err);
     });
     // report
     const doc = new pdfkit_1.default({ size: "A4", margin: m2p(10) });
@@ -151,6 +151,10 @@ async function generate_report(preflight, vignette, report, job) {
     const by = (mh - bh) / 2;
     const tx = (mw - tw) / 2;
     const ty = (mh - th) / 2;
+    let delta_x = Math.abs(parseInt(jsonreport["PageBoxes"]["Mediabox"]["minX"]) - parseInt(jsonreport["PageBoxes"]["Trimbox"]["minX"]));
+    let delta_y = Math.abs(parseInt(jsonreport["PageBoxes"]["Mediabox"]["minY"]) - parseInt(jsonreport["PageBoxes"]["Trimbox"]["minY"]));
+    delta_x -= parseInt(jsonreport["PageBoxes"]["Trimbox"]["minX"]);
+    delta_y += parseInt(jsonreport["PageBoxes"]["Trimbox"]["minY"]);
     let infos = [];
     infos.push({
         "Profil de preflight": jsonreport["PreflightProfile"]
@@ -227,10 +231,10 @@ async function generate_report(preflight, vignette, report, job) {
         // the coodinates system is bottom/left
         // we translate to a top/left
         let x = parseInt(loc["minX"]); // no change
-        let y = mh - parseInt(loc["maxY"]); // revert Y
-        // Apply offest based on Trim
-        x = x + tx;
-        y = y - ty;
+        let y = th - parseInt(loc["maxY"]); // revert Y
+        // Apply offest based on delta between trim and media
+        x = x + delta_x;
+        y = y + delta_y;
         let w = parseInt(loc["maxX"]) - parseInt(loc["minX"]);
         let h = parseInt(loc["maxY"]) - parseInt(loc["minY"]);
         // apply Ratio for drawing

@@ -187,6 +187,11 @@ async function generate_report(
   const tx = (mw-tw)/2;
   const ty = (mh-th)/2;
 
+  let delta_x = Math.abs(parseInt(jsonreport["PageBoxes"]["Mediabox"]["minX"])-parseInt(jsonreport["PageBoxes"]["Trimbox"]["minX"]));
+  let delta_y = Math.abs(parseInt(jsonreport["PageBoxes"]["Mediabox"]["minY"])-parseInt(jsonreport["PageBoxes"]["Trimbox"]["minY"]));
+  delta_x-=parseInt(jsonreport["PageBoxes"]["Trimbox"]["minX"]);
+  delta_y+=parseInt(jsonreport["PageBoxes"]["Trimbox"]["minY"]);
+
   let infos = [];
   infos.push({
     "Profil de preflight": jsonreport["PreflightProfile"]
@@ -271,10 +276,12 @@ async function generate_report(
     // the coodinates system is bottom/left
     // we translate to a top/left
     let x = parseInt(loc["minX"]);        // no change
-    let y = mh - parseInt(loc["maxY"]);   // revert Y
-    // Apply offest based on Trim
-     x = x+tx;
-     y = y-ty;
+    let y = th - parseInt(loc["maxY"]);   // revert Y
+
+    // Apply offest based on delta between trim and media
+     x = x  + delta_x ;
+     y = y  + delta_y;
+
     let w = parseInt(loc["maxX"]) - parseInt(loc["minX"]);
     let h = parseInt(loc["maxY"]) - parseInt(loc["minY"]);
 
