@@ -3,7 +3,7 @@
     <ElementFields>
         <Name Editor="hide" Type="string">preflight_transformer</Name>
         <DisplayName Editor="hide" Type="string">preflight_transformer</DisplayName>
-        <Version Editor="hide" Type="number">1</Version>
+        <Version Editor="hide" Type="number">5</Version>
         <Keywords Editor="hide" Type="string"/>
         <Tooltip Editor="hide" Type="string"/>
         <IncomingConnections Editor="hide" RequireAtLeastOne="Yes">Yes</IncomingConnections>
