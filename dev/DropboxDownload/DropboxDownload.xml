@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Object>
+    <ElementFields>
+        <Name Editor="hide" Type="string">Dropbox</Name>
+        <DisplayName Editor="hide" Type="string"/>
+        <Version Editor="hide" Type="number">1</Version>
+        <Keywords Editor="hide" Type="string"/>
+        <Tooltip Editor="hide" Type="string"/>
+        <IncomingConnections Editor="hide">No</IncomingConnections>
+        <OutgoingConnections DetailedInfo="" Editor="hide" RequireAtLeastOne="Yes">Unlimited</OutgoingConnections>
+        <ConnectionType Editor="hide">Move</ConnectionType>
+        <FunctionsNodeJSScript Editor="hide"/>
+        <ExecutionMode Editor="hide">Serialized</ExecutionMode>
+        <NumberOfSlots Editor="hide">Default</NumberOfSlots>
+        <ExecutionGroup Editor="hide"/>
+        <PerformanceTuning Editor="hide">No</PerformanceTuning>
+        <IdleAfterJob Editor="hide">0</IdleAfterJob>
+        <PositionInElementPane Editor="hide">Configurators</PositionInElementPane>
+        <SubcategoryInElementPane Editor="hide">&lt;ValueDescription Type=&quot;stringlist&quot;&gt;&lt;Value&gt;Custom&lt;/Value&gt;&lt;/ValueDescription&gt;</SubcategoryInElementPane>
+        <DispositionInElementPane Editor="hide" Type="number"/>
+        <Description Editor="hide" Type="string"/>
+        <Compatibility Editor="hide" Type="string"/>
+        <SupportInfo Editor="hide" Type="string"/>
+        <AppDiscovery Editor="hide" Type="string"/>
+        <Connections Editor="hide" Type="string"/>
+        <SwitchModule Editor="hide" Type="string"/>
+        <ObsoleteProperties Editor="hide" Type="string"/>
+        <ObsoleteConnectionProperties Editor="hide" Type="string"/>
+        <App_Key Default="" DetailedInfo="" Editor="inline" LocalizedTagName="App_Key" Subtype="inline" Tooltip="" Type="string" UserDefined="true" Validation="Standard"></App_Key>
+        <App_Secret Default="" DetailedInfo="" Editor="inline" LocalizedTagName="App_Secret" Subtype="inline" Tooltip="" Type="string" UserDefined="true" Validation="Standard"></App_Secret>
+        <Token Default="" DetailedInfo="" Editor="inline" LocalizedTagName="Token" Subtype="" Tooltip="Ce token est obtenu apres avoir : &#10;1 - authorisé l'app &#10;2 - demandé ce token via CURL" Type="string" UserDefined="true" Validation="Standard"></Token>
+        <Refresh Default="300" DetailedInfo="" Editor="inline" LocalizedTagName="Refresh" Subtype="inline" Tooltip="Time between refresh in sec." Type="number" UserDefined="true" Validation="Standard">300</Refresh>
+        <Dropbox_path Default="" DetailedInfo="" Editor="inline;sltextwithvar" LocalizedTagName="Dropbox Path" Subtype="inline" Tooltip="folder on dropbox" Type="string" UserDefined="true" Validation="Standard"></Dropbox_path>
+    </ElementFields>
+    <ConnectionFields/>
+    <ExtraProperties/>
+</Object>
