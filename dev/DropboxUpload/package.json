@@ -1,0 +1,36 @@
+{
+  "license": "UNLICENSED",
+  "name": "dropbox",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Source  script for a Enfocus Switch script tool, intended to send job on a dropbox path",
+  "keywords": [
+    "enfocus",
+    "switch",
+    "sscript",
+    "dropbox"
+  ],
+  "author": "CMI - Dirty Coding Team : the Unicorns lovers",
+  "contributors": [
+    {
+      "name": "Konogan Cossec",
+      "email": "kcossec@cmimedia.fr"
+    },
+    {
+      "name": "Tristan Juhé",
+      "email": "tjuhe@cmimedia.fr"
+    }
+  ],
+  "scripts": {
+    "transpile": "SwitchScriptTool --transpile .",
+    "pack": "SwitchScriptTool --pack . ../../production/"
+  },
+  "dependencies": {
+    "dropbox": "^10.1.0",
+    "fs-extra": "^10.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "12.12.70",
+    "@types/switch-scripting": "https://github.com/enfocus-switch/types-switch-scripting/archive/1.0.1.tar.gz"
+  }
+}
