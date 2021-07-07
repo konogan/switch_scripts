@@ -178,8 +178,13 @@ async function generate_report(preflight, vignette, report, job) {
             ? jsonreport["PDFVersion"]["_"]
             : "",
     });
+    let formatteddate = "-";
+    if (jsonreport["datetime"]) {
+        formatteddate = new Date(Date.parse(jsonreport["datetime"])).toLocaleString();
+        ;
+    }
     infos.push({
-        "Date de création": jsonreport["datetime"] ? jsonreport["datetime"] : "-",
+        "Date de création": formatteddate,
     });
     let boxes = [];
     boxes.push({
