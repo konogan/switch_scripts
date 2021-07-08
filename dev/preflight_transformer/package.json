@@ -23,7 +23,7 @@
   "main": "main.ts",
   "scripts": {
     "transpile": "SwitchScriptTool --transpile .",
-    "pack": "SwitchScriptTool --pack . ../../production/"
+    "pack": "SwitchScriptTool --pack . ../../production/ && open ../../production/"
   },
   "dependencies": {
     "fs-extra": "^9.0.1",

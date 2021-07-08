@@ -215,15 +215,10 @@ async function generate_report(
       ? jsonreport["PDFVersion"]["_"]
       : "",
   });
-
-
-  let formatteddate = "-";
-  if(jsonreport["datetime"]){
-    formatteddate= new Date(Date.parse(jsonreport["datetime"])).toLocaleString("fr-FR");;
-  }
-
+  
+  process.env.TZ = "Europe/Paris";
   infos.push({
-    "Date de création": formatteddate,
+    "Date de création": new Date().toLocaleString("fr-FR",{timeZone:"Europe/Paris"}),
   });
 
   let boxes = [];
