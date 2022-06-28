@@ -15,7 +15,7 @@ async function jobArrived(s: Switch, flowElement: FlowElement, job: Job) {
         datas.forEach(data => {
             xw.startElement("item")
             xw.writeAttribute("name",data.tag);
-            xw.text(data.value);
+            xw.text(JSON.stringify(data.value));
             xw.endElement();
         });
 
